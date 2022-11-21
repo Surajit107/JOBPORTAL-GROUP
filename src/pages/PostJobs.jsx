@@ -122,14 +122,47 @@ const PostJobs = () => {
                       </fieldset>
                     </div>
 
-                    {/* *****Salary***** */}
+                    {/* *****Min. Salary***** */}
 
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
                           name="salary"
                           type="text"
-                          placeholder="Salary*" />
+                          placeholder="Minimum Salary*" />
+                      </fieldset>
+                    </div>
+
+                    {/* *****Max. Salary***** */}
+
+                    <div className="col-md-4 col-sm-12">
+                      <fieldset>
+                        <input
+                          name="salary"
+                          type="text"
+                          placeholder="Maximum Salary*" />
+                      </fieldset>
+                    </div>
+
+                    {/* *****Category One***** */}
+
+                    <div className="col-md-4 col-sm-12">
+                      <fieldset>
+                        <input
+                          name="salary"
+                          type="text"
+                          placeholder="Post Job Category Here*" />
+                      </fieldset>
+                    </div>
+
+                    {/* *****Category Two***** */}
+
+                    <div className="col-md-4 col-sm-12">
+                      <fieldset>
+                        <input
+                          name="salary"
+                          type="text"
+                          placeholder="If Any Other Category Present*" />
                       </fieldset>
                     </div>
 

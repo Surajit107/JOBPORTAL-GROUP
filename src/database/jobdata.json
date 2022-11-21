@@ -2,6 +2,10 @@
   "jobs": [
     {
       "title": "Product Designer",
+      "category": {
+        "cat_1": "Designer",
+        "cat_2": "Decolation"
+      },
       "company": "Puma",
       "city": "New York City",
       "status": "Full Time",
@@ -28,6 +32,10 @@
     },
     {
       "title": "Front-End Developer",
+      "category": {
+        "cat_1": "Front-End",
+        "cat_2": "Photoshop"
+      },
       "company": "Nike",
       "city": "Florida",
       "status": "Full Time",

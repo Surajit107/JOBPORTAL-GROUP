@@ -2,22 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CURRENCY } from "../../constants/common";
 const JobCard = (props) => {
-  const { title, salary, desc, id, image } = props;
+  const { title, salary, category, id, image } = props;
   return (
-    <div className="col-md-4">
+    <div className="col-md-4 mt-4">
       <div className="trainer-item">
         <div className="image-thumb">
           <img src={image} alt={title} />
         </div>
         <div className="down-content">
-          <span>
-            <sup>{CURRENCY}</sup>
-            {salary.min} - <sup>{CURRENCY}</sup>
-            {salary.max}
-          </span>
+          <span>{CURRENCY}{salary.min}</span>
 
           <h4>{title}</h4>
-          <p>{desc}</p>
+          <p>{category.cat_1} &nbsp;/&nbsp; {category.cat_2}</p>
 
           <ul className="social-icons">
             <li>
