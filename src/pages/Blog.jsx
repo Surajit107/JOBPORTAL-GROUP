@@ -8,6 +8,7 @@ import { fetchAllBlogs } from '../redux/slice/BlogsSlice'
 const Blog = () => {
   const dispatch = useDispatch()
   const { blog_data, loading } = useSelector((state) => state.blogslice)
+
   useEffect(() => {
     dispatch(fetchAllBlogs())
   }, [dispatch])

@@ -5,12 +5,12 @@ const BLOG_API = "http://192.168.123.7:3002"
 export const fetchAllBlogs = createAsyncThunk("/blog", async () => {
     try {
         const res = await axios.get(`${BLOG_API}/blog`)
-        console.log(res?.data)
         return res?.data
     } catch (error) {
         console.log(error);
     }
 })
+
 
 const initialState = {
     blog_data: [],

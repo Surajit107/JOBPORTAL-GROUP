@@ -19,7 +19,7 @@ const BlogDetails = () => {
     return (
         <div>
             {loading && <PreLoader />}
-            <Banner string="Single" page="blog post"/>
+            <Banner string="Single" page="blog post" />
 
             {/* <!-- ***** Blog Start ***** --> */}
             {single_blog_data && (

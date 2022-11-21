@@ -13,7 +13,7 @@ export const fetchSingleBlog = createAsyncThunk("/blog/id", async (id) => {
 
 const initialState = {
     single_blog_data: [],
-    single_blog_status: [],
+    single_blog_status: "idle",
     loading: false
 }
 
