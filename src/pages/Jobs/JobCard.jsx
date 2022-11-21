@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PropTypes } from "prop-types";
 import { CURRENCY } from "../../constants/common";
 const JobCard = (props) => {
   const { title, salary, desc, id, image } = props;
@@ -31,11 +30,4 @@ const JobCard = (props) => {
   );
 };
 
-JobCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  salary: PropTypes.object.isRequired,
-  desc: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-};
 export default JobCard;

@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchAllJobs } from '../../../redux/slice/JobSlice'
 import Pagination from '../../common/Pagination'
 
 const Cards = () => {
+
+    const dispatch = useDispatch()
+    const { fetch_job_data } = useSelector((state) => state.jobslice)
+    useEffect(() => {
+        dispatch(fetchAllJobs())
+    }, [dispatch])
+
+    
     return (
         <div>
             <section className="section" id="trainers">
@@ -17,28 +27,35 @@ const Cards = () => {
 
                     <ul className="job-listings mb-5">
 
-                        <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/jobsingle" className='p-2'><h4>Puma</h4></Link>
-                            <div className="job-listing-logo">
-                                <script type="text/javascript" async=""
-                                    src="https://www.google-analytics.com/analytics.js"></script>
-                            </div>
-                            <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                    <h2>Product Designer</h2>
-                                    <strong>Puma</strong>
-                                </div>
-                                <div className="job-listing-location pt-2 mb-3 mb-sm-0 custom-width w-25">
-                                    <span className="icon-room"></span> New York City
-                                </div>
-                                <div className="job-listing-meta pt-2">
-                                    <span className="badge badge-danger">Part Time</span>
-                                </div>
-                            </div>
-                        </li>
+                        {
+                            fetch_job_data?.map((curElm) => {
+                                const { title, company, city, status, id } = curElm
+                                return (
+                                    <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center" key={id}>
+                                        <Link to={`/jobsingle/${id}`} className='p-2'><h4>{company}</h4></Link>
+                                        <div className="job-listing-logo">
+                                            <script type="text/javascript" async=""
+                                                src="https://www.google-analytics.com/analytics.js"></script>
+                                        </div>
+                                        <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                            <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                                <h2>{title}</h2>
+                                                <strong>{company}</strong>
+                                            </div>
+                                            <div className="job-listing-location pt-2 mb-3 mb-sm-0 custom-width w-25">
+                                                <span className="icon-room"></span> {city}
+                                            </div>
+                                            <div className="job-listing-meta pt-2">
+                                                <span className="badge badge-success">{status}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
 
                     </ul>
-                    
+
                     <br />
 
                     {/* *******Pagination******* */}

@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import Banner from '../components/common/banners/Banner'
+import PreLoader from '../components/common/preloader/PreLoader'
+import { fetchSingleJob } from '../redux/slice/SingleJobSlice'
 
 const JobDetails = () => {
+
+    const { id } = useParams()
+    const dispatch = useDispatch()
+    const { single_job_data, loading } = useSelector((state) => state.singlejobslice)
+    const { desc, about, name, email, phone, website, title, city } = single_job_data
+
+    useEffect(() => {
+        dispatch(fetchSingleJob(id))
+    }, [dispatch, id])
+
     return (
         <div>
-            <Banner string="$70 000" />
+            {loading && <PreLoader />}
+            <Banner string={title} />
 
             <section className="section" id="trainers">
                 <div className="container">
@@ -17,7 +32,10 @@ const JobDetails = () => {
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
-                        <div className="carousel-inner">
+
+                        {/* ********* Slider ******* */}
+
+                        {/* <div className="carousel-inner">
                             <div className="carousel-item active">
                                 <img className="d-block w-100" src="assets/images/job-image-1-1200x600.jpg" alt="First slide" />
                             </div>
@@ -27,15 +45,16 @@ const JobDetails = () => {
                             <div className="carousel-item">
                                 <img className="d-block w-100" src="assets/images/job-image-1-1200x600.jpg" alt="Third slide" />
                             </div>
-                        </div>
-                        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        </div> */}
+                        {/* <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span className="sr-only">Previous</span>
                         </a>
                         <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
                             <span className="sr-only">Next</span>
-                        </a>
+                        </a> */}
+
                     </div>
 
                     <br />
@@ -54,15 +73,15 @@ const JobDetails = () => {
                                 <article id='tabs-1'>
                                     <h4>Job Description</h4>
 
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio eum expedita nobis cum vitae totam voluptate temporibus nostrum, repellendus accusantium.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo hic quis quo tempora, totam non vero velit. Inventore, obcaecati placeat perspiciatis neque enim laudantium. Sit eaque, aliquid et nisi illo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit nam placeat ut cumque ipsa iste, commodi omnis aperiam perferendis incidunt. Provident doloremque, quia labore eius adipisci asperiores voluptatum nisi porro corporis ex explicabo magnam eligendi, autem quae, voluptate et molestiae?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae soluta architecto modi. Et ullam ipsam, tempore sequi nesciunt dignissimos animi odio eaque illum eligendi pariatur. Porro delectus a rem rerum ex similique fugit dolorem fugiat libero sint aliquam velit, eligendi adipisci fuga assumenda, dolorum, deserunt ea inventore quis voluptas accusantium omnis iure quia temporibus. Accusamus, adipisci facere ullam ea amet.</p>
+                                    <p>{desc}</p>
                                 </article>
 
                                 <article id='tabs-2'>
                                     <h4>About Employer</h4>
 
-                                    <p className="lead"> <i className="fa fa-map-marker"></i> London </p>
+                                    <p className="lead"> <i className="fa fa-map-marker"></i> {city}</p>
 
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia doloremque sit, enim sint odio corporis illum perferendis, unde repellendus aut dolore doloribus minima qui ullam vel possimus magnam ipsa deleniti.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ducimus ab numquam magnam aliquid, odit provident consectetur corporis eius blanditiis alias nulla commodi qui voluptatibus laudantium quaerat tempore possimus esse nam sed accusantium inventore? Sapiente minima dicta sed quia sunt?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum qui, corrupti consequuntur. Officia consectetur error amet debitis esse minus quasi, dicta suscipit tempora, natus, vitae voluptatem quae libero. Sunt nulla culpa impedit! Aliquid cupiditate, impedit reiciendis dolores, illo adipisci, omnis dolor distinctio voluptas expedita maxime officiis maiores cumque sequi quaerat culpa blanditiis. Quia tenetur distinctio rem, quibusdam officiis voluptatum neque!</p>
+                                    <p>{about}</p>
                                 </article>
 
                                 <article id='tabs-3'>
@@ -72,19 +91,19 @@ const JobDetails = () => {
                                         <div className="col-sm-6">
                                             <label>Name</label>
 
-                                            <p>John Smith</p>
+                                            <p>{name}</p>
                                         </div>
                                         <div className="col-sm-6">
                                             <label>Mobile phone</label>
-                                            <p>9876543210</p>
+                                            <p>{phone}</p>
                                         </div>
                                         <div className="col-sm-6">
                                             <label>Email</label>
-                                            <p><a href="!#">john@carsales.com</a></p>
+                                            <p><a href="!#">{email}</a></p>
                                         </div>
                                         <div className="col-sm-6">
                                             <label>Website</label>
-                                            <p><a href="#!">http://www.surajit.com/</a></p>
+                                            <p><a href="#!">{website}</a></p>
                                         </div>
                                     </div>
                                 </article>

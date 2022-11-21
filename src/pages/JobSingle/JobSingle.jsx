@@ -1,42 +1,31 @@
 import JobSingleBanner from "../../components/common/banners/JobSingleBanner";
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleJob } from "../../redux/slice/SingleJobSlice";
 import PreLoader from "../../components/common/preloader/PreLoader";
-import axios from "axios";
-import { API_URL, API_ENDPOINS } from "../../constants/common";
-const JobSingle = () => {
-  const { id } = useParams();
-  const [data, setData] = useState();
-  const [loader, setLoader] = useState(false);
 
-  async function fetchCurrentJobDetails() {
-    setLoader(true);
-    try {
-      await axios
-        .get(`${API_URL}${API_ENDPOINS.GET_ALL_JOBS}/${id}`)
-        .then((res) => {
-          setLoader(false);
-          return setData(res.data);
-        });
-    } catch (err) {
-      setLoader(false);
-      console.log(err);
-    }
-  }
+
+const JobSingle = () => {
+
+  const { id } = useParams();
+  const dispatch = useDispatch()
+  const { single_job_data, loading } = useSelector((state) => state.singlejobslice)
+  const { title, company, city, status, date, vacancy, exp, salary, gender, deadline, desc, resp, edu, others } = single_job_data;
 
   useEffect(() => {
-    fetchCurrentJobDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchSingleJob(id))
+  }, [dispatch, id]);
 
-  console.log("data :", data);
+  // console.log("Single data :", single_job_data);
+
   return (
     <div>
-      {loader && <PreLoader />}
-      <JobSingleBanner />
+      {loading && <PreLoader />}
+      <JobSingleBanner title={title} />
 
       {/* <!-- ***** Fleet Ends ***** --> */}
-      {data && (
+      {single_job_data && (
         <section className="site-section">
           <div className="container">
             <div className="row align-items-center mb-5">
@@ -51,13 +40,13 @@ const JobSingle = () => {
                     <img src="" alt="" data-pagespeed-url-hash="2859068494" />
                   </div>
                   <div>
-                    <h2>{data?.title}</h2>
+                    <h2>{title}</h2>
                     <div>
                       <span className="ml-0 mr-2 mb-2">
                         <span className="mr-2">
                           <i className="fa fa-briefcase" aria-hidden="true"></i>
                         </span>
-                        Puma
+                        {company}
                       </span>
                       <span className="m-2">
                         <span className="mr-2">
@@ -66,13 +55,13 @@ const JobSingle = () => {
                             aria-hidden="true"
                           ></i>
                         </span>
-                        New York City
+                        {city}
                       </span>
                       <span className="m-2">
                         <span className=" mr-2">
                           <i className="fa fa-clock-o" aria-hidden="true"></i>
                         </span>
-                        <span className="text-primary">Full Time</span>
+                        <span className="text-primary">{status}</span>
                       </span>
                     </div>
                   </div>
@@ -113,16 +102,7 @@ const JobSingle = () => {
                     </span>
                     Job Description
                   </h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Debitis illum fuga eveniet. Deleniti asperiores, commodi
-                    quae ipsum quas est itaque, ipsa, dolore beatae voluptates
-                    nemo blanditiis iste eius officia minus. Velit unde aliquam
-                    et voluptas reiciendis non sapiente labore, deleniti
-                    asperiores blanditiis nihil quia officiis dolor vero iste
-                    dolore vel molestiae saepe. Id nisi, consequuntur sunt
-                    impedit quidem, vitae mollitia!
-                  </p>
+                  <p>{desc}</p>
                 </div>
                 <div className="mb-5">
                   <h3 className="h5 d-flex align-items-center mb-4 text-primary">
@@ -133,13 +113,7 @@ const JobSingle = () => {
                   </h3>
                   <ul className="list-unstyled m-0 p-0">
                     <li className="d-flex align-items-start mb-2">
-                      <span>
-                        Necessitatibus quibusdam facilis Velit unde aliquam et
-                        voluptas reiciendis non sapiente labore Commodi quae
-                        ipsum quas est itaque Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit Deleniti asperiores
-                        blanditiis nihil quia officiis dolor
-                      </span>
+                      <span>{resp}</span>
                     </li>
                   </ul>
                 </div>
@@ -152,13 +126,7 @@ const JobSingle = () => {
                   </h3>
                   <ul className="list-unstyled m-0 p-0">
                     <li className="d-flex align-items-start mb-2">
-                      <span>
-                        Necessitatibus quibusdam facilis Velit unde aliquam et
-                        voluptas reiciendis non sapiente labore Commodi quae
-                        ipsum quas est itaque Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit Deleniti asperiores
-                        blanditiis nihil quia officiis dolor
-                      </span>
+                      <span>{edu}</span>
                     </li>
                   </ul>
                 </div>
@@ -171,13 +139,7 @@ const JobSingle = () => {
                   </h3>
                   <ul className="list-unstyled m-0 p-0">
                     <li className="d-flex align-items-start mb-2">
-                      <span>
-                        Necessitatibus quibusdam facilis Velit unde aliquam et
-                        voluptas reiciendis non sapiente labore Commodi quae
-                        ipsum quas est itaque Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit Deleniti asperiores
-                        blanditiis nihil quia officiis dolor
-                      </span>
+                      <span>{others}</span>
                     </li>
                   </ul>
                 </div>
@@ -205,35 +167,34 @@ const JobSingle = () => {
                   <ul className="list-unstyled pl-3 mb-0">
                     <li className="mb-2">
                       <strong className="text-black">Published on:</strong>{" "}
-                      April 14, 2019
+                      {date}
                     </li>
                     <li className="mb-2">
-                      <strong className="text-black">Vacancy:</strong> 20
+                      <strong className="text-black">Vacancy:</strong> {vacancy}
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">Employment Status:</strong>{" "}
-                      Full-time
+                      {status}
                     </li>
                     <li className="mb-2">
-                      <strong className="text-black">Experience:</strong> 2 to 3
-                      year(s)
+                      <strong className="text-black">Experience:</strong> {exp}
                     </li>
                     <li className="mb-2">
-                      <strong className="text-black">Job Location:</strong> New
-                      ork City
+                      <strong className="text-black">Job Location:</strong> {city}
                     </li>
                     <li className="mb-2">
-                      <strong className="text-black">Salary:</strong> $60k -
-                      $100k
+                      <strong className="text-black">Salary:</strong>
+                      ${salary?.min} - 
+                      ${salary?.max}
                     </li>
                     <li className="mb-2">
-                      <strong className="text-black">Gender:</strong> Any
+                      <strong className="text-black">Gender:</strong> {gender}
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">
                         Application Deadline:
                       </strong>{" "}
-                      April 28, 2019
+                      {deadline}
                     </li>
                   </ul>
                 </div>

@@ -1,5 +1,5 @@
 {
-  "name": "jobportal-template",
+  "name": "jobportal-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,8 +24,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch src/database/jobdata.json --host 127.0.0.1 --port 3005",
-    "dev": "concurrently \"npm start\" \"npm run server\""
+    "json-server-jobs": "json-server --watch src/database/jobdata.json --host 192.168.123.7 --port 3001",
+    "json-server-blogs": "json-server --watch src/database/blogdata.json --host 192.168.123.7 --port 3002",
+    "json-server-contacts": "json-server --watch src/database/contact.json --host 192.168.123.7 --port 3003",
+    "json-server-login": "json-server --watch src/database/login.json --host 192.168.123.7 --port 3004",
+    "dev": "concurrently \"npm start\" \"npm run json-server-jobs\" \"npm run json-server-blogs\" \"npm run json-server-contacts\" \"npm run json-server-login\""
   },
   "eslintConfig": {
     "extends": [
