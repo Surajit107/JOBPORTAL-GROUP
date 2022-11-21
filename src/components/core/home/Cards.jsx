@@ -11,8 +11,8 @@ const Cards = () => {
     useEffect(() => {
         dispatch(fetchAllJobs())
     }, [dispatch])
+    const joblist = fetch_job_data.length
 
-    
     return (
         <div>
             <section className="section" id="trainers">
@@ -20,7 +20,7 @@ const Cards = () => {
                     <div className="row">
                         <div className="col-lg-6 offset-lg-3">
                             <div className="section-heading">
-                                <h2>43,167 Job Listed</h2>
+                                <h2>{joblist} Jobs Listed</h2>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const Cards = () => {
                     <br />
 
                     {/* *******Pagination******* */}
-                    <Pagination />
+                    <Pagination joblist={joblist} />
                 </div>
             </section>
         </div>
