@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../baseUrl/common";
 
-const BLOG_API = "http://192.168.123.7:3002"
 export const fetchSingleBlog = createAsyncThunk("/blog/id", async (id) => {
     try {
-        const res = await axios.get(`${BLOG_API}/blog/${id}`)
+        const res = await axios.get(`${BASE_URL}3002/blog/${id}`)
         return res?.data
     } catch (error) {
         console.log(error);

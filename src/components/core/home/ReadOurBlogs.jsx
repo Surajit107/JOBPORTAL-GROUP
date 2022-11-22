@@ -36,7 +36,7 @@ const ReadOurBlogs = () => {
                                     )
                                 }).reverse().slice(0, 3)
                             }
-                            <div className="main-rounded-button"><Link to="/blog">Read More</Link></div>
+                            <div className="main-rounded-button mt-2"><Link to="/blog">Read More</Link></div>
                         </div>
                         <div className="col-lg-8">
                             {
@@ -56,7 +56,7 @@ const ReadOurBlogs = () => {
                                             </article>
                                         </section>
                                     )
-                                }).reverse().slice(0, 1)
+                                }).reverse().slice(0,1)
                             }
                         </div>
                     </div>
