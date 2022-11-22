@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleJob } from "../../redux/slice/SingleJobSlice";
 import PreLoader from "../../components/common/preloader/PreLoader";
+import { CURRENCY } from "../../baseUrl/common";
 
 
 const JobSingle = () => {
@@ -184,8 +185,8 @@ const JobSingle = () => {
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">Salary:</strong>
-                      ${salary?.min} - 
-                      ${salary?.max}
+                      {CURRENCY}{salary?.min} - 
+                      {CURRENCY}{salary?.max}
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">Gender:</strong> {gender}
