@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchAllBlogs } from '../../../redux/slice/BlogsSlice'
 
 const ReadOurBlogs = () => {
+    const dispatch = useDispatch()
+    const { blog_data } = useSelector((state) => state.blogslice)
+    console.log(blog_data);
+    useEffect(() => {
+        dispatch(fetchAllBlogs())
+    }, [dispatch])
     return (
         <div>
             {/* <!-- ***** Blog Start ***** --> */}
@@ -19,33 +27,37 @@ const ReadOurBlogs = () => {
                     </div>
                     <div className="row" id="tabs">
                         <div className="col-lg-4">
-                            <ul>
-                                <li><a href='#tabs-1'>Lorem ipsum dolor sit amet, consectetur adipisicing.</a></li>
-                                <li><a href='#tabs-2'>Aspernatur excepturi magni, placeat rerum nobis magnam libero! Soluta.</a>
-                                </li>
-                                <li><a href='#tabs-3'>Sunt hic recusandae vitae explicabo quidem laudantium corrupti non
-                                    adipisci nihil.</a></li>
-                                <div className="main-rounded-button"><Link to="/blog">Read More</Link></div>
-                            </ul>
+                            {
+                                blog_data?.map((curElm) => {
+                                    return (
+                                        <ul key={curElm.id}>
+                                            <li className='mb-2'><a href='#tabs-1'>{curElm.title}</a></li>
+                                        </ul>
+                                    )
+                                }).reverse().slice(0, 3)
+                            }
+                            <div className="main-rounded-button"><Link to="/blog">Read More</Link></div>
                         </div>
                         <div className="col-lg-8">
-                            <section className='tabs-content'>
-                                <article id='tabs-1'>
-                                    <img src="assets/images/blog-image-1-940x460.jpg" alt="" />
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
+                            {
+                                blog_data?.map((curElm) => {
+                                    return (
+                                        <section className='tabs-content' key={curElm.id}>
+                                            <article id='tabs-1'>
+                                                <img src="assets/images/blog-image-1-940x460.jpg" alt="" />
+                                                <h4>{curElm.title}</h4>
 
-                                    <p><i className="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i className="fa fa-calendar"></i>
-                                        27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments"></i> 15 comments</p>
+                                                <p><i className="fa fa-user"></i> {curElm.name} &nbsp;|&nbsp; <i className="fa fa-calendar"></i> {curElm.date} &nbsp;|&nbsp; <i className="fa fa-comments"></i>  {curElm.comments}</p>
 
-                                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend
-                                        hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem
-                                        tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut,
-                                        accumsan diam.</p>
-                                    <div className="main-button">
-                                        <Link to="/blogdetails">Continue Reading</Link>
-                                    </div>
-                                </article>
-                            </section>
+                                                <p>{curElm.description}</p>
+                                                <div className="main-button">
+                                                    <Link to={`/blogdetails/${curElm.id}`}>Continue Reading</Link>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    )
+                                }).reverse().slice(0, 1)
+                            }
                         </div>
                     </div>
                 </div>
