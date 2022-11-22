@@ -43,17 +43,17 @@ const initialState = {
 const PostJobs = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [fromValue, setFromValue] = useState(initialState)
+  const [formValue, setFormValue] = useState(initialState)
 
   const handleChange = (e) => {
-    setFromValue({ ...fromValue, [e.target.name]: e.target.value })
+    setFormValue({ ...formValue, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e) => {
     e.preventdefault()
   }
   const onButtonClick = () => {
-    dispatch(fetchPostJobs(fromValue))
-    navigate('/postjobs')
+    dispatch(fetchPostJobs(formValue))
+    navigate('/')
   }
 
   return (
@@ -87,7 +87,7 @@ const PostJobs = () => {
                           name="title"
                           type="text"
                           placeholder="Job Title*"
-                          value={fromValue.title}
+                          value={formValue.title}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -100,7 +100,7 @@ const PostJobs = () => {
                           name="company"
                           type="text"
                           placeholder="Company Name*"
-                          value={fromValue.company}
+                          value={formValue.company}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -113,7 +113,7 @@ const PostJobs = () => {
                           name="name"
                           type="text"
                           placeholder="Employer Name*"
-                          value={fromValue.name}
+                          value={formValue.name}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -126,7 +126,7 @@ const PostJobs = () => {
                           name="email"
                           type="email"
                           placeholder="Employer Email*"
-                          value={fromValue.email}
+                          value={formValue.email}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -139,7 +139,7 @@ const PostJobs = () => {
                           name="phone"
                           type="tel"
                           placeholder="Contact Number*"
-                          value={fromValue.phone}
+                          value={formValue.phone}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -152,7 +152,7 @@ const PostJobs = () => {
                           name="status"
                           type="text"
                           placeholder="Employment Status*"
-                          value={fromValue.status}
+                          value={formValue.status}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -165,7 +165,7 @@ const PostJobs = () => {
                           name="city"
                           type="text"
                           placeholder="Job Location*"
-                          value={fromValue.city}
+                          value={formValue.city}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -178,7 +178,7 @@ const PostJobs = () => {
                           name="vacancy"
                           type="text"
                           placeholder="Vacancy*"
-                          value={fromValue.vacancy}
+                          value={formValue.vacancy}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -191,7 +191,7 @@ const PostJobs = () => {
                           name="exp"
                           type="text"
                           placeholder="Experience*"
-                          value={fromValue.exp}
+                          value={formValue.exp}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -204,7 +204,7 @@ const PostJobs = () => {
                           name="salary_min"
                           type="text"
                           placeholder="Minimum Salary*"
-                          value={fromValue.salary_min}
+                          value={formValue.salary_min}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -217,7 +217,7 @@ const PostJobs = () => {
                           name="salary_max"
                           type="text"
                           placeholder="Maximum Salary*"
-                          value={fromValue.salary_max}
+                          value={formValue.salary_max}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -230,7 +230,7 @@ const PostJobs = () => {
                           name="category_1"
                           type="text"
                           placeholder="Post Job Category Here*"
-                          value={fromValue.category_1}
+                          value={formValue.category_1}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -243,7 +243,7 @@ const PostJobs = () => {
                           name="category_2"
                           type="text"
                           placeholder="If Any Other Category Present*"
-                          value={fromValue.category_2}
+                          value={formValue.category_2}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -256,7 +256,7 @@ const PostJobs = () => {
                           name="gender"
                           type="text"
                           placeholder="Gender*"
-                          value={fromValue.gender}
+                          value={formValue.gender}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -269,7 +269,7 @@ const PostJobs = () => {
                           name="website"
                           type="text"
                           placeholder="Company Website*"
-                          value={fromValue.website}
+                          value={formValue.website}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -282,7 +282,7 @@ const PostJobs = () => {
                           name="deadline"
                           type="text"
                           placeholder="Application Dedline* [dd-Month-yyyy]"
-                          value={fromValue.deadline}
+                          value={formValue.deadline}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -295,7 +295,7 @@ const PostJobs = () => {
                           name="desc"
                           rows="12"
                           placeholder="Job Description*"
-                          value={fromValue.desc}
+                          value={formValue.desc}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -308,7 +308,7 @@ const PostJobs = () => {
                           name="about"
                           rows="12"
                           placeholder="About Employer*"
-                          value={fromValue.about}
+                          value={formValue.about}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -321,7 +321,7 @@ const PostJobs = () => {
                           name="resp"
                           rows="12"
                           placeholder="Responsibilities*"
-                          value={fromValue.resp}
+                          value={formValue.resp}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -334,7 +334,7 @@ const PostJobs = () => {
                           name="edu"
                           rows="12"
                           placeholder="Education*"
-                          value={fromValue.edu}
+                          value={formValue.edu}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -347,7 +347,7 @@ const PostJobs = () => {
                           name="others"
                           rows="12"
                           placeholder="Other Benifits*"
-                          value={fromValue.others}
+                          value={formValue.others}
                           onChange={handleChange} />
                       </fieldset>
                     </div>

@@ -12,7 +12,7 @@ const Cards = () => {
     useEffect(() => {
         dispatch(fetchAllJobs())
     }, [dispatch])
-    const joblist = fetch_job_data.length
+    const joblist = fetch_job_data?.length
 
     return (
         <div>
@@ -57,7 +57,7 @@ const Cards = () => {
                                         </div>
                                     </li>
                                 )
-                            })
+                            }).reverse().slice(0, 3)
                         }
 
                     </ul>

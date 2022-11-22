@@ -15,10 +15,10 @@ const initialState = {
 const Contact = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [fromValue, setFromValue] = useState(initialState)
+  const [formValue, setFormValue] = useState(initialState)
 
   const handleChange = (e) => {
-    setFromValue({ ...fromValue, [e.target.name]: e.target.value })
+    setFormValue({ ...formValue, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = (e) => {
@@ -26,8 +26,8 @@ const Contact = () => {
   }
 
   const onButtonClick = () => {
-    dispatch(fetchContact(fromValue))
-    navigate('/contact')
+    dispatch(fetchContact(formValue))
+    navigate('/')
   }
 
   return (
@@ -57,7 +57,7 @@ const Contact = () => {
                           name="name"
                           type="text"
                           placeholder="Your Name*"
-                          value={fromValue.name}
+                          value={formValue.name}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -69,7 +69,7 @@ const Contact = () => {
                           name="email"
                           type="email"
                           placeholder="Your Email*"
-                          value={fromValue.email}
+                          value={formValue.email}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -81,7 +81,7 @@ const Contact = () => {
                           name="subject"
                           type="text"
                           placeholder="Subject*"
-                          value={fromValue.subject}
+                          value={formValue.subject}
                           onChange={handleChange} />
                       </fieldset>
                     </div>
@@ -93,7 +93,7 @@ const Contact = () => {
                           name="message"
                           rows="6"
                           placeholder="Message*"
-                          value={fromValue.message}
+                          value={formValue.message}
                           onChange={handleChange}></textarea>
                       </fieldset>
                     </div>

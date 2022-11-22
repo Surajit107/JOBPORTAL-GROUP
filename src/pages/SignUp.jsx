@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Banner from '../components/common/banners/Banner'
+import { fetchSignUp } from '../redux/slice/SignUpSlice'
+
+const initialState = {
+  email: "",
+  mobile: "",
+  username: "",
+  password: ""
+}
 
 const SignUp = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [formValue, setFormValue] = useState(initialState)
+
+  const handleChange = (e) => {
+    setFormValue({ ...formValue, [e.target.name]: e.target.value })
+  }
+  const handleSubmit = (e) => {
+    e.preventdefault()
+  }
+
+  const onButtonClick = () => {
+    dispatch(fetchSignUp(formValue))
+    navigate('/')
+  }
+
   return (
     <div>
       <Banner string="Create Your Account &" page="Sign Up" />
@@ -10,7 +36,10 @@ const SignUp = () => {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-6 col-md-6 col-xs-6">
               <div className="contact-form">
-                <form>
+
+                {/* ******From Start****** */}
+
+                <form onSubmit={handleSubmit}>
                   <div className="row">
 
                     {/* *****Email***** */}
@@ -20,7 +49,9 @@ const SignUp = () => {
                         <input
                           name="email"
                           type="email"
-                          placeholder="Enter a valid email ID*" />
+                          placeholder="Enter a valid email ID*"
+                          value={formValue.email}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -29,12 +60,15 @@ const SignUp = () => {
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
                         <input
-                          name="phone"
+                          name="mobile"
                           type="tel"
-                          placeholder="Enter a valid mobile number*" />
+                          placeholder="Enter a valid mobile number*"
+                          maxLength={10}
+                          value={formValue.mobile}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
-                    
+
                     {/* *****User Name***** */}
 
                     <div className="col-md-12 col-sm-12">
@@ -42,7 +76,9 @@ const SignUp = () => {
                         <input
                           name="username"
                           type="text"
-                          placeholder="Enter a username*" />
+                          placeholder="Enter a username*"
+                          value={formValue.username}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -53,17 +89,22 @@ const SignUp = () => {
                         <input
                           name="password"
                           type="password"
-                          placeholder="Enter a password*" />
+                          placeholder="Enter a password*" 
+                          value={formValue.password}
+                          onChange={handleChange}/>
                       </fieldset>
                     </div>
 
                     <div className="col-lg-12 d-flex justify-content-center">
                       <fieldset>
-                        <button type="submit" id="form-submit" className="main-button">Sign Up</button>
+                        <button onClick={onButtonClick} className="main-button">Sign Up</button>
                       </fieldset>
                     </div>
                   </div>
                 </form>
+
+                {/* ******From End****** */}
+
               </div>
             </div>
           </div>

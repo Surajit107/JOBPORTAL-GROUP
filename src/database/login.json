@@ -1,11 +1,32 @@
 {
-    "login": [
-        {
-            "email": "Surajit Pal",
-            "mobile": "surajit@gmail.com",
-            "user": "Job requirements",
-            "password": "I want to post a job here",
-            "id": "1"
-        }
-    ]
+  "login": [
+    {
+      "email": "Job requirements",
+      "mobile": "surajit@gmail.com",
+      "username": "surajit123",
+      "password": "surajit",
+      "id": 1
+    },
+    {
+      "email": "chandan@gamil.com",
+      "mobile": "9717946576",
+      "username": "chandan108",
+      "password": "chandan",
+      "id": 2
+    },
+    {
+      "email": "debarathi@gamil.com",
+      "mobile": "9717564187",
+      "username": "debarathi001",
+      "password": "debarathi001",
+      "id": 3
+    },
+    {
+      "email": "person@gmail.com",
+      "mobile": "9719781979",
+      "username": "person",
+      "password": "person",
+      "id": 4
+    }
+  ]
 }
