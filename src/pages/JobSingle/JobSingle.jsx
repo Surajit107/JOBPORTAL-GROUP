@@ -12,7 +12,7 @@ const JobSingle = () => {
   const { id } = useParams();
   const dispatch = useDispatch()
   const { single_job_data, loading } = useSelector((state) => state.singlejobslice)
-  const { title, company, city, status, date, vacancy, exp, salary, gender, deadline, desc, resp, edu, others } = single_job_data;
+  const { title, company, city, status, date, vacancy, exp, salary_min,salary_max, gender, deadline, desc, resp, edu, others } = single_job_data;
 
   useEffect(() => {
     dispatch(fetchSingleJob(id))
@@ -185,8 +185,8 @@ const JobSingle = () => {
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">Salary:</strong>
-                      {CURRENCY}{salary?.min} - 
-                      {CURRENCY}{salary?.max}
+                      {CURRENCY}{salary_min} - 
+                      {CURRENCY}{salary_max}
                     </li>
                     <li className="mb-2">
                       <strong className="text-black">Gender:</strong> {gender}

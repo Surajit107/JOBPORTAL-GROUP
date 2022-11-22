@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchAllJobs } from '../../../redux/slice/JobSlice'
 import Pagination from '../../common/Pagination'
+import image from '../../../assets/images/company-name.png'
 
 const Cards = () => {
 
@@ -32,13 +33,18 @@ const Cards = () => {
                                 const { title, company, city, status, id } = curElm
                                 return (
                                     <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center" key={id}>
-                                        <Link to={`/jobsingle/${id}`} className='p-2'><h4>{company}</h4></Link>
+                                        <Link to={`/jobsingle/${id}`} className='p-2'></Link>
                                         <div className="job-listing-logo">
                                             <script type="text/javascript" async=""
-                                                src="https://www.google-analytics.com/analytics.js"></script>
+                                                src="https://www.google-analytics.com/analytics.js">
+                                            </script>
+                                            <img
+                                                src={image}
+                                                alt="iamge"
+                                                className='mx-3' />
                                         </div>
-                                        <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                            <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                        <div className="job-listing-about d-sm-flex custom-width w-100">
+                                            <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0 ml-5">
                                                 <h2>{title}</h2>
                                                 <strong>{company}</strong>
                                             </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CURRENCY } from "../../constants/common";
+import { CURRENCY } from "../../baseUrl/common";
 const JobCard = (props) => {
-  const { title, salary, category, id, image } = props;
+  const { title, salary_min, category_1, category_2, id, image } = props;
   return (
     <div className="col-md-4 mt-4">
       <div className="trainer-item">
@@ -10,10 +10,10 @@ const JobCard = (props) => {
           <img src={image} alt={title} />
         </div>
         <div className="down-content">
-          <span>{CURRENCY}{salary.min}</span>
+          <span>{CURRENCY}{salary_min}</span>
 
           <h4>{title}</h4>
-          <p>{category.cat_1} &nbsp;/&nbsp; {category.cat_2}</p>
+          <p>{category_1} &nbsp;/&nbsp; {category_2}</p>
 
           <ul className="social-icons">
             <li>

@@ -1,7 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Banner from '../components/common/banners/Banner'
+import { fetchPostJobs } from '../redux/slice/PostJobSlice'
+
+// Custom Month Format
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+const cmpltDate = `${monthNames[new Date().getMonth()]} ${new Date().getDate()} , ${new Date().getFullYear()}`
+
+// Custom Image
+const image = "https://img.freepik.com/premium-psd/we-are-hiring-job-vacancy-square-banner-social-media-post-template_177160-560.jpg?w=2000"
+
+// Initialstate
+const initialState = {
+  title: "",
+  category_1: "",
+  category_2: "",
+  company: "",
+  city: "",
+  status: "",
+  name: "",
+  phone: "",
+  email: "",
+  date: cmpltDate,
+  vacancy: "",
+  exp: "",
+  salary_min: "",
+  salary_max: "",
+  gender: "",
+  deadline: "",
+  website: "",
+  about: "",
+  desc: "",
+  resp: "",
+  edu: "",
+  others: "",
+  image: image
+}
 
 const PostJobs = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [fromValue, setFromValue] = useState(initialState)
+
+  const handleChange = (e) => {
+    setFromValue({ ...fromValue, [e.target.name]: e.target.value })
+  }
+  const handleSubmit = (e) => {
+    e.preventdefault()
+  }
+  const onButtonClick = () => {
+    dispatch(fetchPostJobs(fromValue))
+    navigate('/postjobs')
+  }
+
   return (
     <div>
       <Banner string="Post" page="Jobs" />
@@ -19,7 +73,10 @@ const PostJobs = () => {
 
             <div className="col-lg-12 col-md-12 col-xs-12">
               <div className="contact-form">
-                <form>
+
+                {/* *******Form Start******* */}
+
+                <form onSubmit={handleSubmit}>
                   <div className="row">
 
                     {/* *****Job Title***** */}
@@ -27,9 +84,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="jobtitle"
+                          name="title"
                           type="text"
-                          placeholder="Job Title*" />
+                          placeholder="Job Title*"
+                          value={fromValue.title}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -38,9 +97,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="compname"
+                          name="company"
                           type="text"
-                          placeholder="Company Name*" />
+                          placeholder="Company Name*"
+                          value={fromValue.company}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -51,7 +112,9 @@ const PostJobs = () => {
                         <input
                           name="name"
                           type="text"
-                          placeholder="Employer Name*" />
+                          placeholder="Employer Name*"
+                          value={fromValue.name}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -61,9 +124,10 @@ const PostJobs = () => {
                       <fieldset>
                         <input
                           name="email"
-                          type="text"
-                          pattern="[^ @]*@[^ @]*"
-                          placeholder="Employer Email*" />
+                          type="email"
+                          placeholder="Employer Email*"
+                          value={fromValue.email}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -74,7 +138,9 @@ const PostJobs = () => {
                         <input
                           name="phone"
                           type="tel"
-                          placeholder="Contact Number*" />
+                          placeholder="Contact Number*"
+                          value={fromValue.phone}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -83,20 +149,24 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="empstatus"
+                          name="status"
                           type="text"
-                          placeholder="Employment Status*" />
+                          placeholder="Employment Status*"
+                          value={fromValue.status}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
-                    {/* *****Job Location***** */}
+                    {/* *****Job Location/city***** */}
 
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="location"
+                          name="city"
                           type="text"
-                          placeholder="Job Location*" />
+                          placeholder="Job Location*"
+                          value={fromValue.city}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -107,7 +177,9 @@ const PostJobs = () => {
                         <input
                           name="vacancy"
                           type="text"
-                          placeholder="Vacancy*" />
+                          placeholder="Vacancy*"
+                          value={fromValue.vacancy}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -116,9 +188,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="experience"
+                          name="exp"
                           type="text"
-                          placeholder="Experience*" />
+                          placeholder="Experience*"
+                          value={fromValue.exp}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -127,9 +201,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="salary"
+                          name="salary_min"
                           type="text"
-                          placeholder="Minimum Salary*" />
+                          placeholder="Minimum Salary*"
+                          value={fromValue.salary_min}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -138,9 +214,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="salary"
+                          name="salary_max"
                           type="text"
-                          placeholder="Maximum Salary*" />
+                          placeholder="Maximum Salary*"
+                          value={fromValue.salary_max}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -149,9 +227,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="salary"
+                          name="category_1"
                           type="text"
-                          placeholder="Post Job Category Here*" />
+                          placeholder="Post Job Category Here*"
+                          value={fromValue.category_1}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -160,9 +240,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="salary"
+                          name="category_2"
                           type="text"
-                          placeholder="If Any Other Category Present*" />
+                          placeholder="If Any Other Category Present*"
+                          value={fromValue.category_2}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -173,7 +255,9 @@ const PostJobs = () => {
                         <input
                           name="gender"
                           type="text"
-                          placeholder="Gender*" />
+                          placeholder="Gender*"
+                          value={fromValue.gender}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -182,9 +266,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="compweb"
+                          name="website"
                           type="text"
-                          placeholder="Company Website*" />
+                          placeholder="Company Website*"
+                          value={fromValue.website}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -193,9 +279,11 @@ const PostJobs = () => {
                     <div className="col-md-4 col-sm-12">
                       <fieldset>
                         <input
-                          name="dedline"
+                          name="deadline"
                           type="text"
-                          placeholder="Application Dedline* [dd-Month-yyyy]" />
+                          placeholder="Application Dedline* [dd-Month-yyyy]"
+                          value={fromValue.deadline}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -204,9 +292,24 @@ const PostJobs = () => {
                     <div className="col-lg-12">
                       <fieldset>
                         <textarea
-                          name="description"
+                          name="desc"
                           rows="12"
-                          placeholder="Job Description*" />
+                          placeholder="Job Description*"
+                          value={fromValue.desc}
+                          onChange={handleChange} />
+                      </fieldset>
+                    </div>
+
+                    {/* *****About Employer***** */}
+
+                    <div className="col-lg-12">
+                      <fieldset>
+                        <textarea
+                          name="about"
+                          rows="12"
+                          placeholder="About Employer*"
+                          value={fromValue.about}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -215,9 +318,11 @@ const PostJobs = () => {
                     <div className="col-lg-12">
                       <fieldset>
                         <textarea
-                          name="responsibilities"
+                          name="resp"
                           rows="12"
-                          placeholder="Responsibilities*" />
+                          placeholder="Responsibilities*"
+                          value={fromValue.resp}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -226,9 +331,11 @@ const PostJobs = () => {
                     <div className="col-lg-12">
                       <fieldset>
                         <textarea
-                          name="education"
+                          name="edu"
                           rows="12"
-                          placeholder="Education*" />
+                          placeholder="Education*"
+                          value={fromValue.edu}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -237,19 +344,24 @@ const PostJobs = () => {
                     <div className="col-lg-12">
                       <fieldset>
                         <textarea
-                          name="benifits"
+                          name="others"
                           rows="12"
-                          placeholder="Other Benifits*" />
+                          placeholder="Other Benifits*"
+                          value={fromValue.others}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
                     <div className="col-lg-12">
                       <fieldset>
-                        <button type="submit" id="form-submit" className="main-button">Submit</button>
+                        <button onClick={onButtonClick} className="main-button">Submit</button>
                       </fieldset>
                     </div>
                   </div>
                 </form>
+
+                {/* *******Form End******* */}
+
               </div>
             </div>
           </div>

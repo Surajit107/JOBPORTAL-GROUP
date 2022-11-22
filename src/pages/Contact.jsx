@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Banner from '../components/common/banners/Banner'
 import ContactInfo from '../components/core/contact/ContactInfo'
+import { fetchContact } from '../redux/slice/ContactSlice'
+
+const initialState = {
+  name: "",
+  email: "",
+  subject: "",
+  message: ""
+}
 
 const Contact = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [fromValue, setFromValue] = useState(initialState)
+
+  const handleChange = (e) => {
+    setFromValue({ ...fromValue, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventdefault()
+  }
+
+  const onButtonClick = () => {
+    dispatch(fetchContact(fromValue))
+    navigate('/contact')
+  }
+
   return (
     <div>
       <Banner string="Feel free to" page="Contact Us" />
@@ -19,7 +46,8 @@ const Contact = () => {
             </div>
             <div className="col-lg-6 col-md-6 col-xs-12">
               <div className="contact-form section-bg" style={{ "backgroundImage": "url(assets/images/contact-1-720x480.jpg)" }}>
-                <form id="contact" action="" method="post">
+
+                <form onSubmit={handleSubmit}>
                   <div className="row">
 
                     {/* ****Name**** */}
@@ -28,9 +56,9 @@ const Contact = () => {
                         <input
                           name="name"
                           type="text"
-                          id="name"
                           placeholder="Your Name*"
-                          required="" />
+                          value={fromValue.name}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -39,11 +67,10 @@ const Contact = () => {
                       <fieldset>
                         <input
                           name="email"
-                          type="text"
-                          id="email"
-                          pattern="[^ @]*@[^ @]*"
+                          type="email"
                           placeholder="Your Email*"
-                          required="" />
+                          value={fromValue.email}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -53,8 +80,9 @@ const Contact = () => {
                         <input
                           name="subject"
                           type="text"
-                          id="subject"
-                          placeholder="Subject" />
+                          placeholder="Subject*"
+                          value={fromValue.subject}
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 
@@ -64,14 +92,14 @@ const Contact = () => {
                         <textarea
                           name="message"
                           rows="6"
-                          id="message"
-                          placeholder="Message"
-                          required=""></textarea>
+                          placeholder="Message*"
+                          value={fromValue.message}
+                          onChange={handleChange}></textarea>
                       </fieldset>
                     </div>
                     <div className="col-lg-12">
                       <fieldset>
-                        <button type="submit" id="form-submit" className="main-button">Send Message</button>
+                        <button className="main-button" onClick={onButtonClick}>Send Message</button>
                       </fieldset>
                     </div>
                   </div>
