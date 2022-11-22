@@ -15,17 +15,112 @@ const SignUp = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [formValue, setFormValue] = useState(initialState)
+  const [error, setError] = useState({});
 
+
+  // Form Validation
+  const validation = () => {
+    let error = {};
+    // for email validate check
+    const regex = /^([a-zA-Z0-9-.]+)@([a-z]{2,12}).([a-z]{2,4})(.[a-z]{2,4})?$/;
+
+    if (!formValue.username) {
+      error.username = "Username is Required*";
+    }
+
+    if (!formValue.mobile) {
+      error.mobile = "Mobile Number is Required*";
+    }
+
+    if (!formValue.email) {
+      error.email = "Email is Required";
+    } else if (!regex.test(formValue.email)) {
+      error.email = "Enter a valid Email";
+    }
+
+    if (!formValue.password) {
+      error.password = "Password is Required";
+    } else if (formValue.password.length < 3) {
+      error.password = "Password must be more than 3 characters*";
+    } else if (formValue.password.length > 8) {
+      error.password = "Password must be less than 8 characters*";
+    }
+    return error;
+  };
+
+
+  // onChange=>
   const handleChange = (e) => {
-    setFormValue({ ...formValue, [e.target.name]: e.target.value })
-  }
-  const handleSubmit = (e) => {
-    e.preventdefault()
+    let name, value;
+    name = e.target.name
+    value = e.target.value
+    // username
+    if (name === "username") {
+      if (value.length === 0) {
+        setError({ ...error, username: "Username is Required*" });
+        setFormValue({ ...formValue, username: "" })
+      } else {
+        setError({ ...error, username: "" })
+        setFormValue({ ...formValue, username: value })
+      }
+    }
+
+    // mobile
+    if (name === "mobile") {
+      if (value.length === 0) {
+        setError({ ...error, mobile: "Mobile Number is Required*" });
+        setFormValue({ ...formValue, mobile: "" })
+      } else {
+        setError({ ...error, mobile: "" })
+        setFormValue({ ...formValue, mobile: value })
+      }
+    }
+
+    // email
+    if (name === "email") {
+      if (value.length === 0) {
+        setError({ ...error, email: "Email is Required*" });
+        setFormValue({ ...formValue, email: "" })
+      } else {
+        setError({ ...error, email: "" })
+        setFormValue({ ...formValue, email: value })
+      }
+    }
+
+    // password
+    if (name === "password") {
+      if (value.length === 0) {
+        setError({ ...error, password: "Password is Required*" });
+        setFormValue({ ...formValue, password: "" })
+      } else {
+        setError({ ...error, password: "" })
+        setFormValue({ ...formValue, password: value })
+      }
+    }
   }
 
+
+  // onSubmit=>
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  
+  // onClick=>
   const onButtonClick = () => {
-    dispatch(fetchSignUp(formValue))
-    navigate('/')
+    const ErrorList = validation()
+    setError(validation())
+    if (Object.keys(ErrorList).length === 0) {
+      let reg = {
+        username: formValue.username,
+        email: formValue.email,
+        mobile: formValue.mobile,
+        password: formValue.password
+      }
+      dispatch(fetchSignUp(reg))
+      navigate('/')
+      alert("Successfully SignedUp !!!")
+    }
   }
 
   return (
@@ -46,6 +141,7 @@ const SignUp = () => {
 
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.email}</span>
                         <input
                           name="email"
                           type="email"
@@ -59,6 +155,7 @@ const SignUp = () => {
 
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.mobile}</span>
                         <input
                           name="mobile"
                           type="tel"
@@ -73,6 +170,7 @@ const SignUp = () => {
 
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.username}</span>
                         <input
                           name="username"
                           type="text"
@@ -86,12 +184,13 @@ const SignUp = () => {
 
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.password}</span>
                         <input
                           name="password"
                           type="password"
-                          placeholder="Enter a password*" 
+                          placeholder="Enter a password*"
                           value={formValue.password}
-                          onChange={handleChange}/>
+                          onChange={handleChange} />
                       </fieldset>
                     </div>
 

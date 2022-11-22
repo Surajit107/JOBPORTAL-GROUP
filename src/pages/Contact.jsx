@@ -16,18 +16,110 @@ const Contact = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [formValue, setFormValue] = useState(initialState)
+  const [error, setError] = useState({});
 
+
+
+  // Form Validation
+  const validation = () => {
+    let error = {};
+    // for email validate check
+    const regex = /^([a-zA-Z0-9-.]+)@([a-z]{2,12}).([a-z]{2,4})(.[a-z]{2,4})?$/;
+    if (!formValue.name) {
+      error.name = "Name is Required*";
+    }
+
+    if (!formValue.subject) {
+      error.subject = "Subject is Required*";
+    }
+
+    if (!formValue.message) {
+      error.message = "Feedback is Required*";
+    }
+
+    if (!formValue.email) {
+      error.email = "Email is Required";
+    } else if (!regex.test(formValue.email)) {
+      error.email = "Enter a valid Email";
+    }
+    return error;
+  }
+
+
+
+  // onChange =>
   const handleChange = (e) => {
-    setFormValue({ ...formValue, [e.target.name]: e.target.value })
+    let name, value;
+    name = e.target.name
+    value = e.target.value
+
+    // name
+    if (name === "name") {
+      if (value.length === 0) {
+        setError({ ...error, name: "Name is Required*" });
+        setFormValue({ ...formValue, name: "" })
+      } else {
+        setError({ ...error, name: "" })
+        setFormValue({ ...formValue, name: value })
+      }
+    }
+
+    // subject
+    if (name === "subject") {
+      if (value.length === 0) {
+        setError({ ...error, subject: "Subject Number is Required*" });
+        setFormValue({ ...formValue, subject: "" })
+      } else {
+        setError({ ...error, subject: "" })
+        setFormValue({ ...formValue, subject: value })
+      }
+    }
+
+    // email
+    if (name === "email") {
+      if (value.length === 0) {
+        setError({ ...error, email: "Email is Required*" });
+        setFormValue({ ...formValue, email: "" })
+      } else {
+        setError({ ...error, email: "" })
+        setFormValue({ ...formValue, email: value })
+      }
+    }
+
+    // message
+    if (name === "message") {
+      if (value.length === 0) {
+        setError({ ...error, message: "Message is Required*" });
+        setFormValue({ ...formValue, message: "" })
+      } else {
+        setError({ ...error, message: "" })
+        setFormValue({ ...formValue, message: value })
+      }
+    }
   }
 
+
+  // onSubmit=>
   const handleSubmit = (e) => {
-    e.preventdefault()
+    e.preventDefault()
   }
 
+  
+  // onClick=>
   const onButtonClick = () => {
-    dispatch(fetchContact(formValue))
-    navigate('/')
+    const ErrorList = validation()
+    setError(validation())
+    if (Object.keys(ErrorList).length === 0) {
+      let reg = {
+        name: formValue.name,
+        email: formValue.email,
+        subject: formValue.subject,
+        message: formValue.message
+      }
+      dispatch(fetchContact(reg))
+      navigate('/')
+      alert("Thanks For Feedback :)")
+    }
   }
 
   return (
@@ -53,6 +145,7 @@ const Contact = () => {
                     {/* ****Name**** */}
                     <div className="col-md-6 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.name}</span>
                         <input
                           name="name"
                           type="text"
@@ -65,6 +158,7 @@ const Contact = () => {
                     {/* ****Email**** */}
                     <div className="col-md-6 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.email}</span>
                         <input
                           name="email"
                           type="email"
@@ -77,6 +171,7 @@ const Contact = () => {
                     {/* ****Subject**** */}
                     <div className="col-md-12 col-sm-12">
                       <fieldset>
+                        <span className="text-danger">{error.subject}</span>
                         <input
                           name="subject"
                           type="text"
@@ -89,6 +184,7 @@ const Contact = () => {
                     {/* ****Message**** */}
                     <div className="col-lg-12">
                       <fieldset>
+                        <span className="text-danger">{error.message}</span>
                         <textarea
                           name="message"
                           rows="6"

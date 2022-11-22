@@ -27,6 +27,27 @@
       "username": "person",
       "password": "person",
       "id": 4
+    },
+    {
+      "username": "panda123",
+      "email": "panda@gmail.com",
+      "mobile": "9719781979",
+      "password": "panda123",
+      "id": 5
+    },
+    {
+      "username": "tapas123",
+      "email": "tapas@gmail.com",
+      "mobile": "8978171646",
+      "password": "tapas123",
+      "id": 6
+    },
+    {
+      "username": "pallab123",
+      "email": "pallab@gmail.com",
+      "mobile": "7896546432",
+      "password": "pallab12",
+      "id": 7
     }
   ]
 }

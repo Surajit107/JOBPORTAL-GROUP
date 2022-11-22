@@ -49,7 +49,7 @@ const PostJobs = () => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e) => {
-    e.preventdefault()
+    e.preventDefault()
   }
   const onButtonClick = () => {
     dispatch(fetchPostJobs(formValue))
