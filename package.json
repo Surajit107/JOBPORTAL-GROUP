@@ -13,9 +13,11 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-paginate": "^8.1.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
     "redux": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
@@ -24,11 +26,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server-jobs": "json-server --watch src/database/jobdata.json --host 192.168.123.7 --port 3001",
-    "json-server-blogs": "json-server --watch src/database/blogdata.json --host 192.168.123.7 --port 3002",
-    "json-server-contacts": "json-server --watch src/database/contact.json --host 192.168.123.7 --port 3003",
-    "json-server-login": "json-server --watch src/database/login.json --host 192.168.123.7 --port 3004",
-    "dev": "concurrently \"npm start\" \"npm run json-server-jobs\" \"npm run json-server-blogs\" \"npm run json-server-contacts\" \"npm run json-server-login\""
+    "json-server-jobs": "json-server --watch src/database/jobdata.json --host localhost --port 3001",
+    "json-server-blogs": "json-server --watch src/database/blogdata.json --host localhost --port 3002",
+    "json-server-contacts": "json-server --watch src/database/contact.json --host localhost --port 3003",
+    "json-server-signin": "json-server --watch src/database/signindata.json --host localhost --port 3004",
+    "dev": "concurrently \"npm start\" \"npm run json-server-jobs\" \"npm run json-server-blogs\" \"npm run json-server-contacts\" \"npm run json-server-signin\""
   },
   "eslintConfig": {
     "extends": [

@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import Banner from '../components/common/banners/Banner'
-import { fetchSignUp } from '../redux/slice/SignUpSlice'
+import { fetchSignUp } from '../redux/slice/AuthSlice'
+import { ToastContainer, toast } from 'react-toastify';
 
 const initialState = {
+  user: "",
   email: "",
-  mobile: "",
-  username: "",
-  password: ""
+  password: "",
+  type: "U"
 }
 
 const SignUp = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [formValue, setFormValue] = useState(initialState)
-  const [error, setError] = useState({});
+  const [error, setError] = useState({})
 
 
   // Form Validation
@@ -24,55 +23,40 @@ const SignUp = () => {
     // for email validate check
     const regex = /^([a-zA-Z0-9-.]+)@([a-z]{2,12}).([a-z]{2,4})(.[a-z]{2,4})?$/;
 
-    if (!formValue.username) {
-      error.username = "Username is Required*";
+    if (!formValue.user) {
+      error.user = "First Name is Required*";
     }
-
-    if (!formValue.mobile) {
-      error.mobile = "Mobile Number is Required*";
-    }
-
     if (!formValue.email) {
-      error.email = "Email is Required";
+      error.email = "Email is Required*";
     } else if (!regex.test(formValue.email)) {
       error.email = "Enter a valid Email";
     }
 
     if (!formValue.password) {
-      error.password = "Password is Required";
+      error.password = "Password is Required*";
     } else if (formValue.password.length < 3) {
       error.password = "Password must be more than 3 characters*";
-    } else if (formValue.password.length > 8) {
-      error.password = "Password must be less than 8 characters*";
+    } else if (formValue.password.length > 10) {
+      error.password = "Password must be less than 10 characters*";
     }
     return error;
   };
 
 
-  // onChange=>
+  // onChange =>
   const handleChange = (e) => {
     let name, value;
     name = e.target.name
     value = e.target.value
-    // username
-    if (name === "username") {
-      if (value.length === 0) {
-        setError({ ...error, username: "Username is Required*" });
-        setFormValue({ ...formValue, username: "" })
-      } else {
-        setError({ ...error, username: "" })
-        setFormValue({ ...formValue, username: value })
-      }
-    }
 
-    // mobile
-    if (name === "mobile") {
+    // user
+    if (name === "user") {
       if (value.length === 0) {
-        setError({ ...error, mobile: "Mobile Number is Required*" });
-        setFormValue({ ...formValue, mobile: "" })
+        setError({ ...error, user: "Firstname is Required*" });
+        setFormValue({ ...formValue, user: "" })
       } else {
-        setError({ ...error, mobile: "" })
-        setFormValue({ ...formValue, mobile: value })
+        setError({ ...error, user: "" })
+        setFormValue({ ...formValue, user: value })
       }
     }
 
@@ -94,7 +78,7 @@ const SignUp = () => {
         setFormValue({ ...formValue, password: "" })
       } else {
         setError({ ...error, password: "" })
-        setFormValue({ ...formValue, password: value })
+        setFormValue({ ...formValue, password: value, type: "U" })
       }
     }
   }
@@ -105,27 +89,37 @@ const SignUp = () => {
     e.preventDefault()
   }
 
-  
+
   // onClick=>
   const onButtonClick = () => {
     const ErrorList = validation()
     setError(validation())
     if (Object.keys(ErrorList).length === 0) {
       let reg = {
-        username: formValue.username,
+        user: formValue.user,
         email: formValue.email,
-        mobile: formValue.mobile,
-        password: formValue.password
+        password: formValue.password,
+        type: formValue.type
       }
       dispatch(fetchSignUp(reg))
-      navigate('/')
-      alert("Successfully SignedUp !!!")
+      setFormValue(initialState)
+      toast.success('Successfully Registered. Please SignIn to Continue 😊', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
 
   return (
     <div>
-      <Banner string="Create Your Account &" page="Sign Up" />
+      <Banner string="New In Job Agency? " page="Join Now" />
+
       <section className="section" id="contact-us" style={{ "marginTop": "0" }}>
         <div className="container">
           <div className="row d-flex justify-content-center">
@@ -137,6 +131,21 @@ const SignUp = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="row">
 
+                    {/* *****First name***** */}
+
+                    <div className="col-md-12 col-sm-12">
+                      <fieldset>
+                        <span className="text-danger">{error.user}</span>
+                        <input
+                          name="user"
+                          type="text"
+                          placeholder="Enter your first name*"
+                          value={formValue.user}
+                          onChange={handleChange}
+                        />
+                      </fieldset>
+                    </div>
+
                     {/* *****Email***** */}
 
                     <div className="col-md-12 col-sm-12">
@@ -147,36 +156,8 @@ const SignUp = () => {
                           type="email"
                           placeholder="Enter a valid email ID*"
                           value={formValue.email}
-                          onChange={handleChange} />
-                      </fieldset>
-                    </div>
-
-                    {/* *****Phone***** */}
-
-                    <div className="col-md-12 col-sm-12">
-                      <fieldset>
-                        <span className="text-danger">{error.mobile}</span>
-                        <input
-                          name="mobile"
-                          type="tel"
-                          placeholder="Enter a valid mobile number*"
-                          maxLength={10}
-                          value={formValue.mobile}
-                          onChange={handleChange} />
-                      </fieldset>
-                    </div>
-
-                    {/* *****User Name***** */}
-
-                    <div className="col-md-12 col-sm-12">
-                      <fieldset>
-                        <span className="text-danger">{error.username}</span>
-                        <input
-                          name="username"
-                          type="text"
-                          placeholder="Enter a username*"
-                          value={formValue.username}
-                          onChange={handleChange} />
+                          onChange={handleChange}
+                        />
                       </fieldset>
                     </div>
 
@@ -190,13 +171,16 @@ const SignUp = () => {
                           type="password"
                           placeholder="Enter a password*"
                           value={formValue.password}
-                          onChange={handleChange} />
+                          onChange={handleChange}
+                        />
                       </fieldset>
                     </div>
 
                     <div className="col-lg-12 d-flex justify-content-center">
                       <fieldset>
-                        <button onClick={onButtonClick} className="main-button">Sign Up</button>
+                        <button
+                          onClick={onButtonClick}
+                          className="main-button">Sign Up</button>
                       </fieldset>
                     </div>
                   </div>
@@ -209,6 +193,8 @@ const SignUp = () => {
           </div>
         </div>
       </section>
+
+      <ToastContainer />
     </div>
   )
 }
