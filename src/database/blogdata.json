@@ -1,40 +1,57 @@
 {
   "blog": [
     {
-      "title": "Blog-1 Lorem ipsum dolor sit amet, consectetur adipisicing.",
-      "description": "Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.",
+      "title": "Employment Digest ",
+      "description": "a blog to help executives, technologists, and those in career transition keep abreast of career advice, guides and ideas.",
       "name": "Surajit Pal",
-      "date": "27.07.2020 10:10",
+      "date": "24.11.2022 07:32",
       "cmnt_count": 15,
-      "comments": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!",
+      "comments": "Relevance, Quality, Diversity, Volume, Consistency – thank you so much for these guidelines, I’ll always remember these when posting comments on blogs.",
       "id": 1
     },
     {
-      "title": "Blog-2 Lorem ipsum dolor sit amet, consectetur adipisicing.",
-      "description": "Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.",
-      "name": "Debarathi Das",
-      "date": "27.07.2020 10:10",
-      "cmnt_count": 15,
-      "comments": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!",
+      "title": "One Day, One Job",
+      "description": "an interesting blog about entry-level jobs, where each day it looks at one employer and the jobs that they are offering for recent college graduates.",
+      "name": "Debarati Das",
+      "date": "26.11.2022 13:05",
+      "cmnt_count": 11,
+      "comments": "Amazing write-up!",
       "id": 2
     },
     {
-      "title": "Blog-3 Lorem ipsum dolor sit amet, consectetur adipisicing.",
-      "description": "Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.",
+      "title": "The Big Time Blog",
+      "description": "A blog for users of CareerNudge job search shareware tools -- plus the rest of the world. For job-search campaign tips and related observations -- plus articles and links on managing your career and life in general.",
       "name": "Tapas Paral",
-      "date": "27.07.2020 10:10",
-      "cmnt_count": 15,
-      "comments": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!",
+      "date": "22.11.2022 12:00",
+      "cmnt_count": 8,
+      "comments": "It’s really really great information. Keep sharing, Thanks",
       "id": 3
-    }
-    ,
+    },
     {
-      "title": "Blog-4 Lorem ipsum dolor sit amet, consectetur adipisicing.",
-      "description": "Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.",
-      "name": "Tapas Paral",
-      "date": "27.07.2020 10:10",
-      "cmnt_count": 15,
-      "comments": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!",
+      "title": "Executive Resumes and Career Transition Strategies",
+      "description": "Reflections of an Executive Resume Writer, a source for authoritative and creative executive resume-writing and career-transition strategies, as well as timely articles and commentary on the latest issues and trends.",
+      "name": "Mrittika Sarkar",
+      "date": "22.11.2022 11:10",
+      "cmnt_count": 4,
+      "comments": "Great share!",
+      "id": 4
+    },
+    {
+      "title": "George's Employment Blawg",
+      "description": "News, analysis and comments on labor and employment law, human resources, etc., by a St. Louis employment lawyer who represents employers and a University of Missouri - St. Louis HR professor and consultant.",
+      "name": "Sayeri Sen",
+      "date": "23.11.2022 09:11",
+      "cmnt_count": 22,
+      "comments": "Useful post",
+      "id": 4
+    },
+    {
+      "title": "Tim's Strategy",
+      "description": "based on his experiences as a marketing professional and as a worker who has been downsized, Tim Tyrell-Smith brings a fresh and powerful message to job-seekers looking for help in finding a new job. While his strategy is evolving, it covers all aspects of job-hunting, from resume development to networking to personal branding and interviewing.",
+      "name": "Sohini Bose",
+      "date": "20.11.2022 05:45",
+      "cmnt_count": 12,
+      "comments": "I read this post your post so nice and very informative post thanks for sharing this post",
       "id": 4
     }
   ]
