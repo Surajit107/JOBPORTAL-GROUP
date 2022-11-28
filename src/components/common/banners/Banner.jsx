@@ -3,7 +3,7 @@ import React from 'react'
 const Banner = ({ string, page }) => {
     return (
         <div>
-            <section className="section section-bg" id="call-to-action" style={{ "backgroundImage": "url(assets/images/banner-image-1-1920x500.jpg)" }}>
+            <section className="section" id="call-to-action" style={{ "backgroundImage": "url(assets/images/240_F_268464465_rVl8ZzXB77DqW8OUi3AEO99lTeohk2PS.jpg)" }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-10 offset-lg-1">
