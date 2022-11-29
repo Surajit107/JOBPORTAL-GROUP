@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const Banner = ({ string, page, text }) => {
+const Banner = ({ string, page }) => {
     return (
         <div>
             <section className="section section-bg" id="call-to-action" style={{ "backgroundImage": "url(assets/images/banner-image-1-1920x500.jpg)" }}>
@@ -11,14 +11,16 @@ const Banner = ({ string, page, text }) => {
                                 <br />
                                 <br />
                                 <h2>{string} <em>{page}</em></h2>
-                                <p>{text}</p>
+                                <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-    )
-}
+      </section>
+    </div>
+  );
+};
 
-export default Banner
+export default Banner;

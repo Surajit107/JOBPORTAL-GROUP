@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { fetchAllBlogs } from '../../../redux/slice/BlogsSlice'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchAllBlogs } from "../../../redux/slice/BlogsSlice";
 
 const ReadOurBlogs = () => {
     const dispatch = useDispatch()
@@ -20,7 +20,8 @@ const ReadOurBlogs = () => {
                             <div className="section-heading">
                                 <h2>Read our <em>Blog</em></h2>
                                 <img src="assets/images/line-dec.png" alt="" />
-                                <p>Stay informed with the latest technology development. Keep yourself informed and updated with our blogs. Know the details about modern digital strategies. Shape your digital solutions with exclusive information.</p>
+                                <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor,
+                                    ultricies fermentum massa consequat eu.</p>
                             </div>
                         </div>
                     </div>
@@ -48,26 +49,36 @@ const ReadOurBlogs = () => {
                                                 <img src="assets/images/blog-image-1-940x460.jpg" alt="" />
                                                 <h4>{curElm.title}</h4>
 
-                                                <p><i className="fa fa-user"></i> {curElm.name} &nbsp;|&nbsp; <i className="fa fa-calendar"></i> {curElm.date} &nbsp;|&nbsp; <i className="fa fa-comments"></i>  {curElm.comments}</p>
+                        <p>
+                          <i className="fa fa-user"></i> {curElm.name}{" "}
+                          &nbsp;|&nbsp; <i className="fa fa-calendar"></i>{" "}
+                          {curElm.date} &nbsp;|&nbsp;{" "}
+                          <i className="fa fa-comments"></i> {curElm.comments}
+                        </p>
 
-                                                <p>{curElm.description}</p>
-                                                <div className="main-button">
-                                                    {token ?
-                                                        <Link to={`/blogdetails/${curElm.id}`}>Continue Reading</Link>
-                                                        : <Link to="/signin">Continue Reading</Link>}
-                                                </div>
-                                            </article>
-                                        </section>
-                                    )
-                                }).reverse().slice(0, 1)
-                            }
+                        <p>{curElm.description}</p>
+                        <div className="main-button">
+                          {token ? (
+                            <Link to={`/blogdetails/${curElm.id}`}>
+                              Continue Reading
+                            </Link>
+                          ) : (
+                            <Link to="/signin">Continue Reading</Link>
+                          )}
                         </div>
-                    </div>
-                </div>
-            </section>
-            {/* <!-- ***** Blog End ***** --> */}
+                      </article>
+                    </section>
+                  );
+                })
+                .reverse()
+                .slice(0, 1)}
+            </div>
+          </div>
         </div>
-    )
-}
+      </section>
+      {/* <!-- ***** Blog End ***** --> */}
+    </div>
+  );
+};
 
-export default ReadOurBlogs
+export default ReadOurBlogs;
